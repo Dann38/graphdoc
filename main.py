@@ -4,23 +4,23 @@ from tesseract_reader.tesseract_reader import TesseractReader, TesseractReaderCo
 from image_processor import ImageProcessor
 
 
-def get_bboxes():
+def get_bboxes(path_img):
     reader_img = ImageReader()
     config = TesseractReaderConfig(lang="rus")
     reader = TesseractReader(config)
 
-    img = reader_img.read('example_image/img_1.jpeg')
+    img = reader_img.read(path_img)
     bboxes, text = reader.read(img)
     return img, bboxes
 
 
 if __name__ == "__main__":
-    img, bboxes = get_bboxes()
+    inp, out = 'example_image/img_1.jpeg', 'output_image_with_bboxes.jpeg'
+    img, bboxes = get_bboxes(inp)
 
     processor = ImageProcessor()
 
     img_with_bboxes = processor.draw_bboxes(img, bboxes)
 
-    output_path = 'output_image_with_bboxes.jpeg'
-    cv2.imwrite(output_path, img_with_bboxes)
-    print(f"Изображение сохранено в {output_path}")
+    cv2.imwrite(out, img_with_bboxes)
+    print(f"Изображение сохранено в {out}")
