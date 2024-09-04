@@ -34,8 +34,8 @@ class TestGetBboxes(unittest.TestCase):
 
     def test_levenshtein_distance(self):
         result_text = ' '.join(self.text)
-        distance = levenshtein_distance(result_text, self.expected_text)/len(result_text)*100
-        self.assertLessEqual(distance, 5,
+        distance = levenshtein_distance(result_text, self.expected_text)/len(result_text)
+        self.assertLessEqual(distance, 0.05,
                              f"Расстояние Левенштейна ({distance}) между фактическим и ожидаемым текстами больше допустимого.")
 
     def test_bbox_dimensions(self):
