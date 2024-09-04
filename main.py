@@ -11,12 +11,12 @@ def get_bboxes(path_img):
 
     img = reader_img.read(path_img)
     bboxes, text = reader.read(img)
-    return img, bboxes
+    return img, bboxes, text
 
 
 if __name__ == "__main__":
     inp, out = 'example_image/img_1.jpeg', 'output_image_with_bboxes.jpeg'
-    img, bboxes = get_bboxes(inp)
+    img, bboxes, text = get_bboxes(inp)
 
     processor = ImageProcessor()
 
